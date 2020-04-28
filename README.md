@@ -8,5 +8,5 @@ Following info. will be used to search your lost item; Name of the item, where a
 ![Image description](img/LoFo.JPG)
 
 
-**[View Live Preview](https://github.com/thedan06/Lost-and-Found)**
+**[View Live Preview](https://thedan06.github.io/Lost-and-Found/)**
 
