@@ -1,77 +1,76 @@
-@extends('layouts.app')
+{{--@extends('layouts.app-initial')--}}
+@extends('auth.auth-main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <div class="card shadow mb-4" style="margin-top: 10%;">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Self Registration</h6>
+        </div>
+        <div class="card-body">
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+            @include('view-helpers.flash-messages')
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            {!! Form::open(['route' => 'client_self_registration', 'id' => 'form']) !!}
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    {!! Form::label('first_name', 'First Name:') !!}
+                    {!! Form::text('first_name', null, ['class' => 'form-control', 'required']) !!}
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('middle_name', 'Middle Name:') !!}
+                    {!! Form::text('middle_name', null, ['class' => 'form-control', 'required']) !!}
                 </div>
             </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    {!! Form::label('last_name', 'Last Name:') !!}
+                    {!! Form::text('last_name', null, ['class' => 'form-control', 'required']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('gender', 'Gender:') !!}
+                    {!! Form::select('gender', ['male' => 'Male', 'female' => 'Female',], null, ['class' => 'form-control',
+                    'required'] ) !!}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    {!! Form::label('phone_number', 'Phone Number:') !!}
+                    {!! Form::text('phone_number', null, ['class' => 'form-control', 'required']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('location', 'Location:') !!}
+                    {!! Form::text('location', null, ['class' => 'form-control', 'required']) !!}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    {!! Form::label('description', 'Description:') !!}
+                    {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 2, 'cols' => 4]) !!}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>  Save</button>
+
+                    <a href="{!! route('clients.index') !!}" class="btn btn-warning"><i class="fa fa-times"></i> Cancel</a>
+                </div>
+            </div>
+
+            {!! Form::close() !!}
+
+            @include('view-helpers.validation-errors')
+
         </div>
     </div>
-</div>
+
 @endsection

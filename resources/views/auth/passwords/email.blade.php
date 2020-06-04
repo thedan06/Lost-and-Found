@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('auth.auth-main')
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-top: 150px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
