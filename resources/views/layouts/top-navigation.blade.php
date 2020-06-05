@@ -189,7 +189,7 @@
             @else
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                    <img class="img-profile rounded-circle" src="{{'/assets/img/icons/person-icon.jpg'}}">
+                    <img class="img-profile rounded-circle" src="{{'/images/person-icon.jpg'}}">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -222,13 +222,14 @@
 
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        {{ Auth::user()->email }} <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a class="dropdown-item"
+                           href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 

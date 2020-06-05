@@ -17,6 +17,8 @@
         "laravel/telescope": "^3.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+
+        "laravelcollective/html": "^6.0",
         "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {

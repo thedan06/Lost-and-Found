@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -50,9 +51,23 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            //'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'min:3', 'max:255'],
+            'last_name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+            'phone_number' => ['required', 'string', 'min:10', 'max:12', 'unique:users'],
+            /*'phone_number' => [
+                'required', 'string', 'min:10', 'max:12',
+                'unique:users,phone_number,'.$this->id
+            ],*/
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'gender' => [
+                'required',
+                Rule::in(['male', 'female'])
+            ],
+            'location' => ['nullable', 'string', 'min:3', 'max:255'],
+            'description' => ['nullable', 'string', 'min:5', 'max:255'],
         ]);
     }
 
@@ -65,9 +80,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => $data['first_name'] . ' ' . $data['last_name'], //$data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+
+            'phone_number' => $data['phone_number'],
+            'gender' => $data['gender'],
+            'location' => $data['location'],
+            'description' => $data['description'],
         ]);
     }
 }
