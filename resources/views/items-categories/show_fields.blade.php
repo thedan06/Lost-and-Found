@@ -1,12 +1,12 @@
 @php
 
         $fields = [
-            'ID' => $event->id,
-            'Name' => $event->name,
-            'Status' => eventTwix($event->active),
-            'Description' => $event->description,
-            //'Created By' => humanReadableDate($event->created_at),
-            'Created At' => humanReadableDate($event->created_at),
+            'ID' => $itemCategory->id,
+            'Name' => $itemCategory->name,
+            'Status' => categoryTwix($itemCategory->active),
+            'Description' => $itemCategory->description,
+            //'Created By' => humanReadableDate($itemCategory->created_at),
+            'Created At' => humanReadableDate($itemCategory->created_at),
         ];
 
         formGroup($fields);
@@ -30,8 +30,9 @@
         function humanReadableDate($date){
             return $date . ' (' . \Carbon\Carbon::createFromTimeStamp(strtotime($date))->diffForHumans() . ')';
         }
-        function eventTwix($eventStatus) {
-            if ($eventStatus == 1) {
+
+        function categoryTwix($itemCategoryStatus) {
+            if ($itemCategoryStatus == 1) {
                 return 'Active';
             }
             return 'Inactive';
@@ -41,9 +42,9 @@
 <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
         <hr>
-        <a href="{!! route('events.index') !!}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back</a>
+        <a href="{!! route('items-categories.index') !!}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back</a>
 
-        <a href="{!! route('events.edit', [$event->id]) !!}" class="btn btn-primary"><i class="fa fa-edit"></i>
+        <a href="{!! route('items-categories.edit', [$itemCategory->id]) !!}" class="btn btn-primary"><i class="fa fa-edit"></i>
             Update</a>
 
     </div>

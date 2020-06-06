@@ -6,6 +6,7 @@
             {{--<i class="fas fa-laugh-wink"></i>--}}
             <i class="fas fa-hard-hat"></i>
         </div>
+        {{--<div class="sidebar-brand-text mx-3">{{ config('app.name', 'LoFo') }}</div>--}}
         <div class="sidebar-brand-text mx-3">{{ config('app.name', 'LoFo') }}</div>
     </a>
 
@@ -39,7 +40,7 @@
         <div id="collapsePagesConfigurations" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/events">Events</a>
-                <a class="collapse-item" href="/items_categories">Items Categories</a>
+                <a class="collapse-item" href="/items-categories">Items-Categories</a>
             </div>
         </div>
     </li>

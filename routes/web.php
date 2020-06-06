@@ -21,8 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('events', 'EventController');
-
 Route::group(['middleware' => 'auth'], function () {
-
+    Route::resource('events', 'EventController');
+    Route::resource('items-categories', 'ItemsCategoriesController');
 });
