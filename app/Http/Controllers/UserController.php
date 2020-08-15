@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
-use App\Http\Requests\EventRequest;
+use App\User;
+use App\Http\Requests\UserRequest;
 use Auth;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
-class EventController extends Controller
+class UserController extends Controller
 {
     const MESSAGE = 'message';
     const ERROR_MESSAGE = 'error_message';
@@ -18,10 +18,10 @@ class EventController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        $events = Event::paginate(15);
+        $users = User::paginate(15);
 
-        return view('events.index', [
-            'events' => $events
+        return view('users.index', [
+            'users' => $users
         ]);
     }
 
@@ -30,42 +30,42 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        return view('users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param EventRequest $request
+     * @param UserRequest $request
      *
      * @return RedirectResponse
      */
-    public function store(EventRequest $request)
+    public function store(UserRequest $request)
     {
         $inputs = $request->all();
         $inputs['created_by'] = Auth::id();
 
         //$inputs['is_active'] = 'yes';
 
-        $event = Event::create($inputs);
+        $user = User::create($inputs);
 
-        session()->flash(self::MESSAGE, 'Event has been added successfully');
+        session()->flash(self::MESSAGE, 'User has been added successfully');
 
-        return redirect()->to(route('events.show', [$event->id]));
+        return redirect()->to(route('users.show', [$user->id]));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Event $event
+     * @param User $user
      *
      * @return Factory|View
      */
-    public function show(Event $event)
+    public function show(User $user)
     {
-        //dd($event);
-        return view('events.show', [
-            'event' => $event
+        //dd($user);
+        return view('users.show', [
+            'user' => $user
         ]);
     }
 
@@ -78,40 +78,40 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $user = User::find($id);
 
-        return view('events.edit', [
-            'event' => $event
+        return view('users.edit', [
+            'user' => $user
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param EventRequest $request
+     * @param UserRequest $request
      * @param $id
      *
      * @return RedirectResponse
      */
-    public function update(EventRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $inputs = $request->all();
         $inputs['created_by'] = Auth::id();
 
-        Event::find($id)->update($inputs);
+        User::find($id)->update($inputs);
 
-        session()->flash(self::MESSAGE, 'Event info have been updated successfully');
+        session()->flash(self::MESSAGE, 'User info have been updated successfully');
 
-        return redirect()->to(route('events.show', [$id]));
+        return redirect()->to(route('users.show', [$id]));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\events  $events
+     * @param  \App\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $events)
+    public function destroy(User $users)
     {
         //
     }
